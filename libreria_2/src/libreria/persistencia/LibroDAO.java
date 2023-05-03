@@ -27,9 +27,7 @@ public class LibroDAO extends DAO<Libro>{
         
         try{            
             Libro libro = buscarPorIsbn(isbn);
-            if (libro == null){
-                throw new Exception("El libro con el isbn indicado no se encuentra registrado");
-            }
+            
             super.eliminar(libro);
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -81,9 +79,7 @@ public class LibroDAO extends DAO<Libro>{
         try{    
             conectar();
             Libro libro = em.createNamedQuery("Libro.buscarPorNombreAutor", Libro.class).setParameter("nombre", nombreAutor).getSingleResult();
-            if (libro == null){
-                throw new Exception("El libro con el autor indicado no se encuentra registrado");
-            }
+            
             desconectar();
             return libro;
         }catch(Exception e){
@@ -97,9 +93,7 @@ public class LibroDAO extends DAO<Libro>{
         try{
             conectar();
             Libro libro = em.createNamedQuery("Libro.buscarPorNombreEditorial", Libro.class).setParameter("nombre", nombreEditorial).getSingleResult();
-            if (libro == null){
-                throw new Exception("El libro de la editorial indicada no se encuentra registrado");
-            }
+            
             desconectar();
             return libro;
         }catch(Exception e){
